@@ -8,7 +8,7 @@ function setup_sync {
     CRON_SYNC="$CRON_FREQUENCY $SYNC"
     REGEX_SEARCH="^.*$1.*$"
     CRON_TAB="/var/spool/cron/crontabs/$USER"
-    GREP_RESULT=$(grep --only-matching "$REGEX_SEARCH" $CRON_TAB)
+    GREP_RESULT=$(sudo grep --only-matching "$REGEX_SEARCH" $CRON_TAB)
     sudo mount / -o remount,rw
     # if a matching entry exists replace it
     if [ ! -z "$GREP_RESULT" ]; then
