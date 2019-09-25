@@ -1,2 +1,7 @@
 # files will potentially sensitve information
-config.txt
+config*.txt
+
+# backup files
+*.sw?
+*.bak
+*~
