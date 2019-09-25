@@ -8,22 +8,37 @@ function setup_sync {
     CRON_SYNC="$CRON_FREQUENCY $SYNC"
     REGEX_SEARCH="^.*$1.*$"
     CRON_TAB="/var/spool/cron/crontabs/$USER"
-    GREP_RESULT=$(sudo grep --only-matching "$REGEX_SEARCH" $CRON_TAB)
+
     sudo mount / -o remount,rw
-    # if a matching entry exists replace it
+    
+    if [ ! -f $CRON_TAB ]; then
+        sudo touch $CRON_TAB
+        sudo chown $USER:clickpkg $CRON_TAB # non portable operation
+        sudo chmod 600 $CRON_TAB
+    fi
+
+    GREP_RESULT=$(sudo grep --only-matching "$REGEX_SEARCH" $CRON_TAB)
+
+    # if a matching cron entry exists replace it
     if [ ! -z "$GREP_RESULT" ]; then
         sudo sed --in-place --expression="s|$REGEX_SEARCH|$CRON_SYNC|" $CRON_TAB
     else
         sudo echo "$SYNC" >> $CRON_TAB
     fi
+
     sudo service cron restart
+
     if [ ! -d $HOME/bin ]; then
         mkdir $HOME/bin
     fi
+
     SCRIPT_NAME="$HOME/bin/manual-sync-$2.sh"
     echo "$SYNC" > $SCRIPT_NAME
     chmod +x $SCRIPT_NAME
-    echo "manual sync script created at $SCRIPT_NAME"
+    echo "##############################################"
+    echo "# manual sync script created at $SCRIPT_NAME #"
+    echo "##############################################"
+    
     sudo mount / -o remount,ro
 }
 
