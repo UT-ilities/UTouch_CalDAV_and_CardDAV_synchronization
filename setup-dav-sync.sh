@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 CONFIGS='configs.txt'
-source configs.txt
+source $CONFIGS
 
 function setup_sync {
     SYNC="export DISPLAY=:0.0 && export DBUS_SESSION_BUS_ADDRESS=\$(ps -u $USER e | grep -Eo 'dbus-daemon.*address=unix:abstract=/tmp/dbus-[A-Za-z0-9]{10}' | tail -c35) && /usr/bin/syncevolution $1"
@@ -23,7 +23,7 @@ function setup_sync {
     if [ ! -z "$GREP_RESULT" ]; then
         sudo sed --in-place --expression="s|$REGEX_SEARCH|$CRON_SYNC|" $CRON_TAB
     else
-        sudo echo "$SYNC" >> $CRON_TAB
+        echo "$SYNC" | sudo tee $CRON_TAB &>/dev/null
     fi
 
     sudo service cron restart
@@ -56,11 +56,11 @@ function delete {
 }
 
 function delete-contacts {
-    delete "$CONTACTS_SERVER_CONFIG_NAME" "$CONTACTS_VISUAL_NAME" "$CONTACTS_NAME"
+    delete "$CONTACTS_SERVER_CONFIG_NAME" "$CONTACTS_NAME" "$CONTACTS_VISUAL_NAME"
 }
 
 function delete-calendar {
-    delete "$CALENDAR_SERVER_CONFIG_NAME" "$CALENDAR_VISUAL_NAME" "$CALENDAR_NAME"
+    delete "$CALENDAR_SERVER_CONFIG_NAME" "$CALENDAR_NAME" "$CALENDAR_VISUAL_NAME"
 }
 
 function contacts {
