@@ -3,6 +3,14 @@
 CONFIGS='configs.txt'
 source $CONFIGS
 
+function cron_setup {
+    ACTION="$1" # either 'add' or 'delete'
+    REGEX_SEARCH="$2"
+    
+
+    CRON_TAB="/var/spool/cron/crontabs/$USER"
+
+
 function setup_sync {
     SYNC="export DISPLAY=:0.0 && export DBUS_SESSION_BUS_ADDRESS=\$(ps -u $USER e | grep -Eo 'dbus-daemon.*address=unix:abstract=/tmp/dbus-[A-Za-z0-9]{10}' | tail -c35) && /usr/bin/syncevolution $1"
     CRON_SYNC="$CRON_FREQUENCY $SYNC"
@@ -23,7 +31,7 @@ function setup_sync {
     if [ ! -z "$GREP_RESULT" ]; then
         sudo sed --in-place --expression="s|$REGEX_SEARCH|$CRON_SYNC|" $CRON_TAB
     else
-        echo "$SYNC" | sudo tee $CRON_TAB &>/dev/null
+        echo "$CRON_SYNC" | sudo tee $CRON_TAB &>/dev/null
     fi
 
     sudo service cron restart
