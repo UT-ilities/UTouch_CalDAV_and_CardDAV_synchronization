@@ -2,6 +2,10 @@
 
 This utility is a fancy wrapper around `syncevolution` and `cron` and it creates or removes connections to remote carddav/caldav servers. This utility was created specifically to work on Ubuntu Touch but it may work in different environments.
 
+# Get the Code.
+
+    git clone https://github.com/SaltyCybernaut/UBports_CalDAV_and_CardDAV_synchronization.git
+
 # How To Use
 
 Configure server URLs, credentials, and naming preferences.
