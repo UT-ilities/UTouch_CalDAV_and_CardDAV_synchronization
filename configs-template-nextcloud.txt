@@ -1,0 +1,37 @@
+declare -g USERNAME=''
+declare -g PASSWORD=''
+declare -g DOMAIN='domain.tld'
+
+###################################################################################################################################
+
+declare -g CAL_URL="https://$DOMAIN/remote.php/dav/calendar/$USERNAME/" # trailing slash '/' is IMPORTANT!
+
+declare -ga CAL_NAMES CALENDAR_SERVER_CONFIG_NAMES CALENDAR_NAMES CALENDAR_VISUAL_NAMES
+
+CAL_NAMES[0]='personal'
+CALENDAR_SERVER_CONFIG_NAMES[0]="${CAL_NAMES[0]}-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CALENDAR_NAMES[0]="${CAL_NAMES[0]}-$DOMAIN"                 # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CALENDAR_VISUAL_NAMES[0]="${CAL_NAMES[0]} - nextcloud"      # can NOT include the '@' symbol, can NOT be greater than 31 characters!
+
+CAL_NAMES[1]='contact_birthdays'
+CALENDAR_SERVER_CONFIG_NAMES[1]="${CAL_NAMES[1]}-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CALENDAR_NAMES[1]="${CAL_NAMES[1]}-$DOMAIN"                 # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CALENDAR_VISUAL_NAMES[1]="${CAL_NAMES[1]} - nextcloud"      # can NOT include the '@' symbol, can NOT be greater than 31 characters!
+
+###################################################################################################################################
+
+declare -g CONTACTS_URL="https://$DOMAIN/remote.php/dav/addressbooks/users/$USERNAME/contacts/" # trailing slash '/' is IMPORTANT!
+
+declare -ga CARD_NAMES CONTACTS_SERVER_CONFIG_NAMES CONTACTS_NAMES CONTACTS_VISUAL_NAMES
+
+CARD_NAMES[0]=''
+CONTACTS_SERVER_CONFIG_NAMES[0]="$USERNAME-contacts-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CONTACTS_NAME[0]="$USERNAME-contacts-$DOMAIN"                  # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CONTACTS_VISUAL_NAME[0]="$USERNAME - nextcloud"                # can NOT include the '@' symbol, can NOT be greater than 31 characters!
+
+###################################################################################################################################
+
+declare -g CRON_FREQUENCY='0,15,30,45 * * * *' # every 15 minutes
+#declare -g CRON_FREQUENCY='0,30 * * * *'       # every 30 minutes
+#declare -g CRON_FREQUENCY='0 * * * *'          # every hour
+#declare -g CRON_FREQUENCY='@hourly'            # non standard
