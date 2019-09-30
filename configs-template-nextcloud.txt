@@ -1,6 +1,6 @@
 declare -g USERNAME=''
 declare -g PASSWORD=''
-declare -g DOMAIN='domain.tld'
+DOMAIN='domain.tld'
 
 ###################################################################################################################################
 
@@ -10,12 +10,12 @@ declare -ga CAL_NAMES CALENDAR_SERVER_CONFIG_NAMES CALENDAR_NAMES CALENDAR_VISUA
 
 CAL_NAMES[0]='personal'
 CALENDAR_SERVER_CONFIG_NAMES[0]="${CAL_NAMES[0]}-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
-CALENDAR_NAMES[0]="${CAL_NAMES[0]}-$DOMAIN"                 # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CALENDAR_NAMES[0]="${CAL_NAMES[0]}-calendar-$DOMAIN"        # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
 CALENDAR_VISUAL_NAMES[0]="${CAL_NAMES[0]} - nextcloud"      # can NOT include the '@' symbol, can NOT be greater than 31 characters!
 
 CAL_NAMES[1]='contact_birthdays'
 CALENDAR_SERVER_CONFIG_NAMES[1]="${CAL_NAMES[1]}-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
-CALENDAR_NAMES[1]="${CAL_NAMES[1]}-$DOMAIN"                 # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CALENDAR_NAMES[1]="${CAL_NAMES[1]}-calendar-$DOMAIN"        # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
 CALENDAR_VISUAL_NAMES[1]="${CAL_NAMES[1]} - nextcloud"      # can NOT include the '@' symbol, can NOT be greater than 31 characters!
 
 ###################################################################################################################################
