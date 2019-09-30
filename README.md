@@ -4,8 +4,8 @@ This utility is a fancy wrapper around `syncevolution` and `cron` and it creates
 
 # Get the Code.
 
-    git clone https://github.com/SaltyCybernaut/UBports_CalDAV_and_CardDAV_synchronization.git
-    cd UBports_CalDAV_and_CardDAV_synchronization
+    git clone https://github.com/UT-ilities/UTouch_CalDAV_and_CardDAV_synchronization.git
+    cd UTouch_CalDAV_and_CardDAV_synchronization
 
 # How To Use
 
