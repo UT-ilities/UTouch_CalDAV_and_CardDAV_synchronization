@@ -20,7 +20,7 @@ CALENDAR_VISUAL_NAMES[1]="${CAL_NAMES[1]} - nextcloud"      # can NOT include th
 
 ###################################################################################################################################
 
-declare -g CONTACTS_URL="https://$DOMAIN/remote.php/dav/addressbooks/users/$USERNAME/contacts/" # trailing slash '/' is IMPORTANT!
+declare -g CARD_URL="https://$DOMAIN/remote.php/dav/addressbooks/users/$USERNAME/contacts/" # trailing slash '/' is IMPORTANT!
 
 declare -ga CARD_NAMES CONTACTS_SERVER_CONFIG_NAMES CONTACTS_NAMES CONTACTS_VISUAL_NAMES
 

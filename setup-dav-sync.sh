@@ -195,7 +195,7 @@ function contacts {
         local contacts_names="${CONTACTS_NAMES[$i]:0:30}"
         local contacts_visual_names="${CONTACTS_VISUAL_NAMES[$i]:0:30}"
 
-        local url="$CONTACTS_URL${CARD_NAMES[$i]}"
+        local url="$CARD_URL${CARD_NAMES[$i]}"
 
 
         # add cron entry and create manual sync script
