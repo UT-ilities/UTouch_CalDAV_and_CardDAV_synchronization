@@ -195,7 +195,7 @@ function contacts {
         local contacts_names="${CONTACTS_NAMES[$i]:0:30}"
         local contacts_visual_names="${CONTACTS_VISUAL_NAMES[$i]:0:30}"
 
-        local url="$CARD_URL${CARD_NAMES[$i]}"
+        local url="${CARD_URL%%/}/${CARD_NAMES[$i]}"
 
 
         # add cron entry and create manual sync script
@@ -250,7 +250,7 @@ function calendar {
         local calendar_names="${CALENDAR_NAMES[$i]:0:30}"
         local calendar_visual_names="${CALENDAR_VISUAL_NAMES[$i]:0:30}"
 
-        local url="$CAL_URL${CAL_NAMES[$i]}"
+        local url="${CAL_URL%%/}/${CAL_NAMES[$i]}"
 
         # add cron entry and create manual sync script
         setup_sync "${CALENDAR_SERVER_CONFIG_NAMES[$i]}" "${CALENDAR_NAMES[$i]}"

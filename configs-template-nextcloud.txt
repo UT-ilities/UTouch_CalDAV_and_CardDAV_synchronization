@@ -4,7 +4,7 @@ DOMAIN='domain.tld'
 
 ###################################################################################################################################
 
-declare -g CAL_URL="https://$DOMAIN/remote.php/dav/calendar/$USERNAME/" # trailing slash '/' is IMPORTANT!
+declare -g CAL_URL="https://$DOMAIN/remote.php/dav/calendar/$USERNAME" # base URL shared between all calendars
 
 declare -ga CAL_NAMES CALENDAR_SERVER_CONFIG_NAMES CALENDAR_NAMES CALENDAR_VISUAL_NAMES
 
@@ -20,11 +20,11 @@ CALENDAR_VISUAL_NAMES[1]="${CAL_NAMES[1]} - nextcloud"      # can NOT include th
 
 ###################################################################################################################################
 
-declare -g CARD_URL="https://$DOMAIN/remote.php/dav/addressbooks/users/$USERNAME/contacts/" # trailing slash '/' is IMPORTANT!
+declare -g CARD_URL="https://$DOMAIN/remote.php/dav/addressbooks/users/$USERNAME/contacts" # Currently Nextcloud has a single contact group for each user so this is the full URL
 
 declare -ga CARD_NAMES CONTACTS_SERVER_CONFIG_NAMES CONTACTS_NAMES CONTACTS_VISUAL_NAMES
 
-CARD_NAMES[0]=''
+CARD_NAMES[0]='' # Currently Nextcloud has a single contact group for each user so this can be empty or unset
 CONTACTS_SERVER_CONFIG_NAMES[0]="$USERNAME-contacts-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
 CONTACTS_NAME[0]="$USERNAME-contacts-$DOMAIN"                  # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
 CONTACTS_VISUAL_NAME[0]="$USERNAME - nextcloud"                # can NOT include the '@' symbol, can NOT be greater than 31 characters!
