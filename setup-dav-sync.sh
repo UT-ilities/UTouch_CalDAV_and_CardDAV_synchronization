@@ -45,8 +45,7 @@ function cron_handler {
     case "$action" in
         'add')
             if sudo [ -f "$cron_tab" ]; then
-                local grep_result=\
-                    $(sudo grep --only-matching "$regex_search" "$cron_tab")
+                local grep_result=$(sudo grep --only-matching "$regex_search" "$cron_tab")
 
                 # if a matching cron entry exists replace it
                 if [ ! -z "$grep_result" ]; then
