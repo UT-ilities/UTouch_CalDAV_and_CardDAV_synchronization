@@ -26,7 +26,7 @@ declare -ga CARD_NAMES CONTACTS_SERVER_CONFIG_NAMES CONTACTS_NAMES CONTACTS_VISU
 
 CARD_NAMES[0]='' # Currently Nextcloud has a single contact group for each user so this can be empty or unset
 CONTACTS_SERVER_CONFIG_NAMES[0]="$USERNAME-contacts-nextcloud" # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
-CONTACTS_NAME[0]="$USERNAME-contacts-$DOMAIN"                  # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
+CONTACTS_NAMES[0]="$USERNAME-contacts-$DOMAIN"                 # should be globally unique, can NOT include the '@' symbol, can NOT be greater than 31 characters!
 CONTACTS_VISUAL_NAME[0]="$USERNAME - nextcloud"                # can NOT include the '@' symbol, can NOT be greater than 31 characters!
 
 ###################################################################################################################################
