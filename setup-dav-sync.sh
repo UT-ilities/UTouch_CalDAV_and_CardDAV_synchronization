@@ -152,15 +152,26 @@ function setup_sync {
 }
 
 function delete {
-    local server_config_name="$1"
-    local name="$2"
-    local visual_name="$3"
+    local type_action="$1"
+    local server_config_name="$2"
+    local name="$3"
+    local visual_name="$4"
 
     local action='delete'
     cron_handler "$action" "$server_config_name"
     manual_sync "$action" "$name"
+    
+    case "$type_action" in
+        'contact')
+            backend="evolution-contacts"
+        ;;
+        'calendar')
+            backend="evolution-calendar"
+        ;;
+    esac
 
-    syncevolution --remove-database backend=evolution-contacts \
+
+    syncevolution --remove-database backend=$backend \
         database="${visual_name:0:30}" &>/dev/null
     syncevolution --remove "target-config@${server_config_name:0:30}"
     syncevolution --remove "@${server_config_name:0:30}"
@@ -173,7 +184,7 @@ function delete {
 function delete-contacts {
     local i
     for (( i = 0; i < ${#CONTACTS_NAMES[@]}; i++ )); do
-        delete "${CONTACTS_SERVER_CONFIG_NAMES[$i]}" \
+        delete contact "${CONTACTS_SERVER_CONFIG_NAMES[$i]}" \
                "${CONTACTS_NAMES[$i]}" "${CONTACTS_VISUAL_NAMES[$i]}"
     done
 }
@@ -181,7 +192,7 @@ function delete-contacts {
 function delete-calendar {
     local i
     for (( i = 0; i < ${#CALENDAR_NAMES[@]}; i++ )); do
-        delete "${CALENDAR_SERVER_CONFIG_NAMES[$i]}" \
+        delete calendar "${CALENDAR_SERVER_CONFIG_NAMES[$i]}" \
                "${CALENDAR_NAMES[$i]}" "${CALENDAR_VISUAL_NAMES[$i]}"
     done
 }
@@ -283,7 +294,7 @@ function calendar {
             "$calendar_server_config_names" "$calendar_names"
 
         #Add local database to the source
-        syncevolution --configure sync=two-way \
+        syncevolution --configure sync=two-way backend=evolution-calendar \
             database="$calendar_visual_names" "$calendar_server_config_names" \
             "$calendar_names"
 
