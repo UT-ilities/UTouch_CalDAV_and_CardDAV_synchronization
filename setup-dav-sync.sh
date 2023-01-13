@@ -163,10 +163,10 @@ function delete {
     
     case "$type_action" in
         'contact')
-			backend="evolution-contacts"
-		;;
+            backend="evolution-contacts"
+        ;;
         'calendar')
-        	backend="evolution-calendar"
+            backend="evolution-calendar"
         ;;
     esac
 
