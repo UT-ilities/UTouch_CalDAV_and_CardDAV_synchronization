@@ -217,9 +217,9 @@ function contacts {
                                         database="$contacts_visual_names"
 
         #Create Peer
-        #if (( ${#USERNAME} != 0 )) || (( ${#PASSWORD} != 0 )); then
+        #if (( ${#NCLOGIN} != 0 )) || (( ${#PASSWORD} != 0 )); then
         if (( ${#PASSWORD} != 0 )); then
-            syncevolution --configure --template webdav username="$USERNAME" \
+            syncevolution --configure --template webdav username="$NCLOGIN" \
                 password="$PASSWORD" syncURL="$url" \
                 keyring=no "target-config@$contacts_server_config_names"
         else
@@ -270,9 +270,9 @@ function calendar {
                                         database="$calendar_visual_names"
 
         #Create Peer
-        #if (( ${#USERNAME} != 0 )) || (( ${#PASSWORD} != 0 )); then
+        #if (( ${#NCLOGIN} != 0 )) || (( ${#PASSWORD} != 0 )); then
         if (( ${#PASSWORD} != 0 )); then
-            syncevolution --configure --template webdav username="$USERNAME" \
+            syncevolution --configure --template webdav username="$NCLOGIN" \
                 password="$PASSWORD" syncURL="$url" keyring=no \
                 "target-config@$calendar_server_config_names"
         else
