@@ -10,9 +10,16 @@ This utility is a fancy wrapper around `syncevolution` and `cron` and it creates
 # How To Use
 
 Configure server URLs, credentials, and naming preferences.
+We assume that you can use non-sytandard NextCloud setup (different network port and 2FA enabled) so you need to provide:
+- a real NC user (```USERNAME```)
+- a Device credentials (```NCLOGIN```) (see https://docs.nextcloud.com/server/latest/user_manual/id/session_management.html)
+- a network port that NC is accepting connections on (```NCPORT```) that defaults to 443
+
+In case of a standard setup (default port and no 2FA enabled) ```USERNAME``` and ```NCLOGIN``` should be the same and ```PASSWORD``` is your NC user pass.
 
     cp config-nextcloud-template.txt config-personal.txt
     vim config-personal.txt
+In order to login using your Device(App) password (thus not exposing your real NC user and pass and bypass oAuth) in current NC version (starting from NC 19) if a Device password is generated you are presented with a pair of login/password. Enter generated login in ```NCLOGIN``` and password in ```PASSWORD``` into your ```config-personal.txt```.
 
 Executing `setup-dav-sync.sh --contacts config-personal.txt` or `setup-dav-sync.sh --calendar config-personal.txt` will read your configurations, connect to the specified carddav/caldav server, synchronize data and setup a cron job to keep this device in sync with the server.
 
