@@ -1,10 +1,12 @@
 declare -g USERNAME=''
+declare -g NCLOGIN=''
+declare -g NCPORT='443'
 declare -g PASSWORD=''
 DOMAIN='domain.tld'
 
 ###################################################################################################################################
 
-declare -g CAL_URL="https://$DOMAIN/remote.php/dav/calendar/$USERNAME" # base URL shared between all calendars
+declare -g CAL_URL="https://$DOMAIN:$NCPORT/remote.php/dav/calendar/$USERNAME" # base URL shared between all calendars
 
 declare -ga CAL_NAMES CALENDAR_SERVER_CONFIG_NAMES CALENDAR_NAMES CALENDAR_VISUAL_NAMES
 
@@ -20,7 +22,7 @@ CALENDAR_VISUAL_NAMES[1]="${CAL_NAMES[1]} - nextcloud"      # can NOT include th
 
 ###################################################################################################################################
 
-declare -g CARD_URL="https://$DOMAIN/remote.php/dav/addressbooks/users/$USERNAME/contacts" # Currently Nextcloud has a single contact group for each user so this is the full URL
+declare -g CARD_URL="https://$DOMAIN:$NCPORT/remote.php/dav/addressbooks/users/$USERNAME/contacts" # Currently Nextcloud has a single contact group for each user so this is the full URL
 
 declare -ga CARD_NAMES CONTACTS_SERVER_CONFIG_NAMES CONTACTS_NAMES CONTACTS_VISUAL_NAMES
 
