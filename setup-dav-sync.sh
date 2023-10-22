@@ -184,16 +184,16 @@ function delete {
 function delete-contacts {
     local i
     for (( i = 0; i < ${#CONTACTS_NAMES[@]}; i++ )); do
-        delete contact "${CONTACTS_SERVER_CONFIG_NAMES[$i]}" \
-               "${CONTACTS_NAMES[$i]}" "${CONTACTS_VISUAL_NAMES[$i]}"
+        delete contact "${CONTACTS_SERVER_CONFIG_NAMES[$i]:0:30}" \
+               "${CONTACTS_NAMES[$i]:0:30}" "${CONTACTS_VISUAL_NAMES[$i]:0:30}"
     done
 }
 
 function delete-calendar {
     local i
     for (( i = 0; i < ${#CALENDAR_NAMES[@]}; i++ )); do
-        delete calendar "${CALENDAR_SERVER_CONFIG_NAMES[$i]}" \
-               "${CALENDAR_NAMES[$i]}" "${CALENDAR_VISUAL_NAMES[$i]}"
+        delete calendar "${CALENDAR_SERVER_CONFIG_NAMES[$i]:0:30}" \
+               "${CALENDAR_NAMES[$i]:0:30}" "${CALENDAR_VISUAL_NAMES[$i]:0:30}"
     done
 }
 
@@ -209,8 +209,8 @@ function contacts {
 
 
         # add cron entry and create manual sync script
-        setup_sync "${CONTACTS_SERVER_CONFIG_NAMES[$i]}" \
-                   "${CONTACTS_NAMES[$i]}"
+        setup_sync "$contacts_server_config_names"  \
+                   "$contacts_names"
 
         #Create contact list
         syncevolution --create-database backend=evolution-contacts \
@@ -263,7 +263,7 @@ function calendar {
         local url="${CAL_URL%%/}/${CAL_NAMES[$i]}"
 
         # add cron entry and create manual sync script
-        setup_sync "${CALENDAR_SERVER_CONFIG_NAMES[$i]}" "${CALENDAR_NAMES[$i]}"
+        setup_sync "$calendar_server_config_names" "$calendar_names"
 
         #Create Calendar
         syncevolution --create-database backend=evolution-calendar \
